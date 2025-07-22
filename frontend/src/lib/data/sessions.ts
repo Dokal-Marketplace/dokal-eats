@@ -27,7 +27,7 @@ export async function retrieveSession() {
   return token || null;
 }
 
-export function destroySession() {
+export async function destroySession() {
   const cookies = await getCookies();
   cookies.delete("_medusa_jwt");
   revalidateTag("user");
