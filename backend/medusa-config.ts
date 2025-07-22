@@ -13,8 +13,8 @@ module.exports = defineConfig({
       adminCors: process.env.ADMIN_CORS,
       authCors: process.env.AUTH_CORS,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
-      cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    },
+      cookieSecret: process.env.COOKIE_SECRET || "supersecret"
+    }
   },
   modules: {
     restaurantModuleService: {
@@ -28,7 +28,7 @@ module.exports = defineConfig({
         providers: [
           {
             resolve: "@medusajs/fulfillment-manual",
-            id: "manual-provider",
+            id: "manual-provider"
           },
         ],
       },
