@@ -6,6 +6,7 @@ export async function retrieveCart(cartId: string) {
     getAuthHeaders(),
     getCacheHeaders("carts")
   ]);
+  
   const { cart } = await sdk.store.cart.retrieve(
     cartId,
     {
