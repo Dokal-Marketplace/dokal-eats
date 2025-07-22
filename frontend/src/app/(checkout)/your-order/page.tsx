@@ -4,13 +4,13 @@ import OrderStatus from "@frontend/components/store/order/order-status";
 import { retrieveDelivery, retrieveDriver } from "@frontend/lib/data";
 import { Clock } from "@medusajs/icons";
 import { Container, Heading, Text } from "@medusajs/ui";
-import { cookies } from "next/headers";
+import {cookies as getCookies} from "next/headers";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export default async function YourOrderPage() {
-  const deliveryId = cookies().get("_medusa_delivery_id")?.value;
-
+  const cookies = await getCookies();
+  const deliveryId = cookies.get("_medusa_delivery_id")?.value;
   if (!deliveryId) {
     notFound();
   }
@@ -32,12 +32,12 @@ export default async function YourOrderPage() {
   if (delivery.eta) {
     eta = new Date(delivery.eta).toLocaleTimeString(undefined, {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit"
     });
   } else {
     eta = new Date().toLocaleTimeString(undefined, {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit"
     });
   }
 
@@ -45,7 +45,7 @@ export default async function YourOrderPage() {
     delivery.delivered_at &&
     new Date(delivery.delivered_at).toLocaleTimeString(undefined, {
       hour: "2-digit",
-      minute: "2-digit",
+      minute: "2-digit"
     });
 
   return (

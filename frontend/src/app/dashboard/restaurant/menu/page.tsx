@@ -27,7 +27,7 @@ export default async function MenuPage() {
         } else {
           categoryProductMap.set(category.id, {
             category_name: category.name,
-            products: [product],
+            products: [product]
           });
         }
       });
