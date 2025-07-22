@@ -38,6 +38,6 @@ export const notifyRestaurantStep = createStep(
   function (input: string, { container }) {
     const logger = container.resolve("logger");
 
-    logger.error("Failed to notify restaurant", { input });
+    logger.error("Failed to notify restaurant", new Error(`Input: ${input}`));
   }
 );

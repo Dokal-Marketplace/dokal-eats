@@ -8,7 +8,23 @@ export const createDeliveryStep = createStep(
   async function ({}, { container }) {
     const service = container.resolve(DELIVERY_MODULE);
 
-    const delivery = await service.createDeliveries({}) as DeliveryDTO
+    const rawDelivery = await service.createDeliveries({});
+
+    const delivery: DeliveryDTO = {
+      ...rawDelivery,
+      items: [], // or fetch from somewhere
+      restaurant: {
+        handle: "",
+        is_open: false,
+        id: "",
+        name: "",
+        phone: "",
+        email: "",
+        created_at: undefined,
+        updated_at: undefined,
+        address: ""
+      } // or fetch from somewhere
+    };
 
     return new StepResponse(delivery, {
       delivery_id: delivery.id,
