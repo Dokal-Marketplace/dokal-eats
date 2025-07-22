@@ -5,14 +5,18 @@ import { getAuthHeaders, getCacheHeaders } from "./cookies";
 export async function listDeliveries(
   filter?: Record<string, string>
 ): Promise<DeliveryDTO[]> {
+  const [authHeaders, cacheHeaders] = await Promise.all([
+    getAuthHeaders(),
+    getCacheHeaders("deliveries")
+  ]);
   const { deliveries }: { deliveries: DeliveryDTO[] } = await sdk.client.fetch(
     "/store/deliveries",
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        ...getAuthHeaders(),
-        ...getCacheHeaders("deliveries"),
+        ...authHeaders,
+        ...cacheHeaders,
       },
     }
   );
