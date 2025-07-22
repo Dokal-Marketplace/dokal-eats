@@ -4,7 +4,7 @@ import { createProduct } from "@frontend/lib/actions";
 import { RestaurantDTO } from "@frontend/lib/types";
 import { HttpTypes } from "@medusajs/types";
 import { Input, Label, Select, Textarea } from "@medusajs/ui";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 
 export function CreateProductForm({
   restaurant,
@@ -13,8 +13,7 @@ export function CreateProductForm({
   restaurant: RestaurantDTO;
   categories: HttpTypes.StoreProductCategory[];
 }) {
-  const [state, formAction] = useFormState(createProduct, null);
-
+  const [state, formAction] = useActionState(createProduct, null);
   return (
     <form
       className="flex flex-col gap-3"

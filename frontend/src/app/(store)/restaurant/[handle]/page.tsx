@@ -6,9 +6,10 @@ import { notFound } from "next/navigation";
 export default async function RestaurantPage({
   params,
 }: {
-  params: { handle: string };
-}) {
-  const restaurant = await retrieveRestaurantByHandle(params.handle);
+  params: Promise<{handle: string}>;}) 
+  {
+  const {handle} = await params;
+  const restaurant = await retrieveRestaurantByHandle(handle);
 
   if (!restaurant) return notFound();
 
@@ -22,7 +23,7 @@ export default async function RestaurantPage({
         } else {
           categoryProductMap.set(category.id, {
             category_name: category.name,
-            products: [product],
+            products: [product]
           });
         }
       });

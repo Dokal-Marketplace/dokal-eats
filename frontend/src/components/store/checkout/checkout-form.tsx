@@ -1,9 +1,11 @@
 "use client";
 
-import { placeOrder } from "@frontend/lib/actions";
-import { HttpTypes } from "@medusajs/types";
-import { Badge, Button, Heading, Input, Label, Textarea } from "@medusajs/ui";
-import { useFormState, useFormStatus } from "react-dom";
+
+import {placeOrder} from "@frontend/lib/actions";
+import {HttpTypes} from "@medusajs/types";
+import {Badge, Button, Heading, Input, Label, Textarea} from "@medusajs/ui";
+import {useActionState} from "react";
+import {useFormStatus} from "react-dom";
 
 function Submit() {
   const status = useFormStatus();
@@ -21,8 +23,7 @@ function Submit() {
 }
 
 export default function CheckoutForm({ cart }: { cart: HttpTypes.StoreCart }) {
-  const [state, action] = useFormState(placeOrder, { message: "" });
-
+  const [state, action] = useActionState(placeOrder, {message: ""});
   const restaurantId = cart.metadata?.restaurant_id as string;
 
   return (

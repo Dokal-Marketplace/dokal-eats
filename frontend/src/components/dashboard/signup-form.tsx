@@ -4,7 +4,7 @@ import { signup } from "@frontend/lib/actions";
 import { RestaurantDTO } from "@frontend/lib/types";
 import { Badge, Button, Input, Label, Select } from "@medusajs/ui";
 import { Link } from "next-view-transitions";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 function Submit() {
@@ -27,12 +27,9 @@ const userTypes = [
   { value: "restaurant", label: "Restaurant" },
 ];
 
-export function SignupForm({
-  restaurants = [],
-}: {
-  restaurants: RestaurantDTO[];
-}) {
-  const [state, action] = useFormState(signup, { message: "" });
+export function SignupForm({restaurants = []}: {restaurants: RestaurantDTO[]}) {
+  const [state, action] = useActionState(signup, {message: ""});
+  
   const [userType, setUserType] = useState("");
 
   return (
