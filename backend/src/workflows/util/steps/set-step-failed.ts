@@ -6,7 +6,7 @@ import { StepResponse, createStep } from "@medusajs/workflows-sdk";
 import { DeliveryDTO } from "../../../modules/delivery/types/common";
 import { handleDeliveryWorkflowId } from "../../delivery/workflows/handle-delivery";
 
-type SetStepFailedtepInput = {
+type SetStepFailedStepInput = {
   stepId?: string;
   updatedDelivery: DeliveryDTO;
 };
@@ -15,7 +15,7 @@ export const setStepFailedStepId = "set-step-failed-step";
 export const setStepFailedStep = createStep(
   setStepFailedStepId,
   async function (
-    { stepId, updatedDelivery }: SetStepFailedtepInput,
+    { stepId, updatedDelivery }: SetStepFailedStepInput,
     { container }
   ) {
     if (!stepId) {
