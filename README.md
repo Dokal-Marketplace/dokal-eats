@@ -57,7 +57,7 @@ Features include:
 - Restaurant storefront
 - Realtime order status dashboards
 - Driver and restaurant dashboards
-- User roles
+- User Roles
 - Authentication
 - Medusa Workflows
 - Realtime Server Sent Event
