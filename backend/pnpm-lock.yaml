@@ -23,6 +23,9 @@ importers:
       '@medusajs/medusa':
         specifier: 2.7.0
         version: 2.7.0(2ae8ad5da83594ef80183a64f4d030f5)
+      '@medusajs/ui':
+        specifier: ^4.0.17
+        version: 4.0.17(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
       '@mikro-orm/core':
         specifier: 6.4.3
         version: 6.4.3
