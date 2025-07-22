@@ -4,6 +4,12 @@ import { DriverDTO } from "@frontend/lib/types";
 import { getAuthHeaders, getCacheHeaders } from "./cookies";
 
 export async function retrieveDriver(driverId: string): Promise<DriverDTO> {
+
+  const [authHeaders, cacheHeaders] = await Promise.all([
+    getAuthHeaders(),
+    getCacheHeaders("drivers")
+  ]);
+
   const {
     driver,
   }: {
@@ -12,8 +18,8 @@ export async function retrieveDriver(driverId: string): Promise<DriverDTO> {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeaders(),
-      ...getCacheHeaders("drivers"),
+      ...authHeaders,
+      ...cacheHeaders,
     },
   });
 

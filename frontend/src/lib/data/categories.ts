@@ -5,11 +5,16 @@ import { getAuthHeaders, getCacheHeaders } from "./cookies";
 export async function listCategories(): Promise<
   HttpTypes.StoreProductCategory[]
 > {
+  const [authHeaders, cacheHeaders] = await Promise.all([
+    getAuthHeaders(),
+    getCacheHeaders("categories")
+  ]);
+
   const { product_categories } = await sdk.store.category.list(
     {},
     {
-      ...getAuthHeaders(),
-      ...getCacheHeaders("categories"),
+      ...authHeaders,
+      ...cacheHeaders,
     }
   );
 

@@ -23,14 +23,18 @@ export async function listDeliveries(
 export async function retrieveDelivery(
   deliveryId: string
 ): Promise<DeliveryDTO> {
+  const [authHeaders, cacheHeaders] = await Promise.all([
+    getAuthHeaders(),
+    getCacheHeaders("deliveries")
+  ]);
   const { delivery }: { delivery: DeliveryDTO } = await sdk.client.fetch(
     `/store/deliveries/${deliveryId}`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        ...getAuthHeaders(),
-        ...getCacheHeaders("deliveries"),
+        ...authHeaders,
+        ...cacheHeaders
       },
     }
   );

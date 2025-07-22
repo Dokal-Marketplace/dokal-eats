@@ -159,14 +159,17 @@ export type CreateUserType = (CreateDriverDTO | CreateRestaurantAdminDTO) & {
 
 export async function createUser(input: CreateUserType) {
   const { token, ...rest } = input;
-
+  const [authHeaders, cacheHeaders] = await Promise.all([
+    getAuthHeaders(),
+    getCacheHeaders("users")
+  ]);
   const res = await sdk.client.fetch("/store/users", {
     method: "POST",
     body: rest,
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeaders(),
-      ...getCacheHeaders("users"),
+      ...authHeaders,
+      ...cacheHeaders,
     },
   });
 
