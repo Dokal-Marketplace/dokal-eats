@@ -16,4 +16,7 @@ export const Restaurant = model.define("restaurant", {
   address: model.text(),
   image_url: model.text().nullable(),
   admins: model.hasMany(() => RestaurantAdmin),
+  facebook_webhook: model.text().nullable(), 
+  facebook_token: model.text().nullable(), // WhatsApp Business API token
+  facebook_phone_id: model.text().nullable(), // WhatsApp phone number ID
 });
