@@ -12,6 +12,9 @@ const schema = zod.object({
   phone: zod.string(),
   email: zod.string(),
   image_url: zod.string().optional(),
+  whatsapp_webhook_url: zod.string().optional(), // WhatsApp webhook callback URL (if per-tenant)
+  whatsapp_token: zod.string().optional(), // SENSITIVE: WhatsApp Business API access token — do NOT expose via API or logs
+  whatsapp_phone_number_id: zod.string().optional()
 });
 
 export async function POST(req: MedusaRequest, res: MedusaResponse) {
