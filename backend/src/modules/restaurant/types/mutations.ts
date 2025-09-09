@@ -5,6 +5,9 @@ export interface CreateRestaurantDTO {
   phone: string;
   email: string;
   image_url?: string;
+  opening_time?: string;
+  closing_time?: string;
+  closed_days?: string;
   is_open?: boolean;
 }
 
