@@ -10,6 +10,9 @@ export interface RestaurantDTO {
   address: string;
   phone: string;
   email: string;
+  opening_time?: string;
+  closing_time?: string;
+  closed_days?: string;
   image_url?: string;
   created_at: Date;
   updated_at: Date;
