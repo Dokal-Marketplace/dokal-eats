@@ -33,5 +33,17 @@ module.exports = defineConfig({
         ],
       },
     },
+    [Modules.CACHE]: {
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/cache-redis",
+            options: { 
+              redisUrl: process.env.REDIS_URL,
+            },          
+          },
+        ],
+      },
+    },
   },
 });
