@@ -13,6 +13,9 @@ export interface RestaurantDTO {
   opening_time?: string;
   closing_time?: string;
   closed_days?: string;
+  whatsapp_webhook_url?: string;
+  whatsapp_token?: string;
+  whatsapp_phone_number_id?: string;
   image_url?: string;
   created_at: Date;
   updated_at: Date;

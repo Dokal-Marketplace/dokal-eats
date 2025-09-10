@@ -5,6 +5,9 @@
     "address": "Falafelgatan 1, 123 45 Copenhagen",
     "email": "hello@medusa-falafel.com",
     "phone": "+45 1234 5678",
+    "opening_time": "09:00",
+    "closing_time": "22:00",
+    "closed_days": "sunday,monday",
     "image_url": "/_de4759b3-096f-47f6-936a-ea291df53f9f.jpeg",
     "is_open": true
   },
