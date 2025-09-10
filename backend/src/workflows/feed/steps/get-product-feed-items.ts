@@ -112,13 +112,24 @@ export const getProductFeedItemsStep = createStep(
 
       for (const variant of product.variants) {
         // @ts-ignore
-        const calculatedPrice = variant.calculated_price as CalculatedPriceSet
-        const hasOriginalPrice = calculatedPrice?.original_amount !== calculatedPrice?.calculated_amount
-        const originalPrice = hasOriginalPrice ? calculatedPrice.original_amount : calculatedPrice.calculated_amount
-        const salePrice = hasOriginalPrice ? calculatedPrice.calculated_amount : undefined
-        const stockStatus = !variant.manage_inventory ? "in stock" : 
-          !availability?.[variant.id]?.availability ? "out of stock" : "in stock"
-
+        const calculatedPrice = variant.calculated_price as CalculatedPriceSet | undefined
+        if (!calculatedPrice?.calculated_amount && !calculatedPrice?.original_amount) {
+          continue
+        }
+        const hasOriginalPrice =
+          (calculatedPrice?.original_amount ?? calculatedPrice?.calculated_amount) !== calculatedPrice?.calculated_amount
+        const originalPrice = (hasOriginalPrice
+          ? calculatedPrice?.original_amount
+          : calculatedPrice?.calculated_amount) as number
+        const salePrice = hasOriginalPrice
+          ? (calculatedPrice?.calculated_amount as number)
+          : undefined
+        const stockStatus =
+          !variant.manage_inventory
+            ? "in stock"
+            : availability?.[variant.id]?.availability > 0
+              ? "in stock"
+              : "out of stock"
         // Get restaurant data if available
         const restaurant = product.restaurant?.[0] // Assuming single restaurant per product
         
