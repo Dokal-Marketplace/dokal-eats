@@ -1,4 +1,5 @@
-import { defineMiddlewares, authenticate } from "@medusajs/framework";
+import { defineMiddlewares, authenticate, validateAndTransformQuery } from "@medusajs/framework";
+import { z } from "zod";
 
 const isAllowed = (req, res, next) => {
   const { restaurant_id, driver_id } = req.auth_context.app_metadata;
@@ -48,5 +49,16 @@ export default defineMiddlewares({
       matcher: "/store/restaurants/:id/admin/**",
       middlewares: [authenticate(["restaurant", "admin"], "bearer")],
     },
+    {
+      matcher: "/store/product-feed",
+      methods: ["GET"],
+      middlewares: [
+        validateAndTransformQuery(z.object({
+          currency_code: z.string(),
+          country_code: z.string(),
+          restaurant_id: z.string().optional(),
+        }), {})
+      ]
+    }
   ],
 });
