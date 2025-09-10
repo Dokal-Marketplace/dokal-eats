@@ -8,6 +8,9 @@ export interface CreateRestaurantDTO {
   opening_time?: string;
   closing_time?: string;
   closed_days?: string;
+  whatsapp_webhook_url?: string;
+  whatsapp_token?: string;
+  whatsapp_phone_number_id?: string;
   is_open?: boolean;
 }
 
