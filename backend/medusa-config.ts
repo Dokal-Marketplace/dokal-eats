@@ -39,9 +39,9 @@ module.exports = defineConfig({
       options: {
         providers: [
           {
-            resolve: "@medusajs/medusa/cache-redis",
+            resolve: "@medusajs/cache-inmemory",
             options: { 
-              redisUrl: REDIS_URL,
+              ttl: 30,
             },          
           },
         ],
