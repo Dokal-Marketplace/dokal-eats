@@ -36,16 +36,10 @@ module.exports = defineConfig({
       },
     },
     [Modules.CACHE]: {
+      resolve: "@medusajs/cache-redis",
       options: {
-        providers: [
-          {
-            resolve: "@medusajs/cache-inmemory",
-            options: { 
-              ttl: 30,
-            },          
-          },
-        ],
-      },
+        redisUrl: REDIS_URL,
+      },    
     },
     [Modules.EVENT_BUS]: {
       resolve: "@medusajs/event-bus-redis",
