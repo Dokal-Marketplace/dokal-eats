@@ -135,11 +135,6 @@ export const getProductFeedItemsStep = createStep(
           item_group_id: product.id,
           condition: "new", // TODO add condition if supported
           brand: restaurant?.name || "Restaurant", // Use restaurant name as brand
-          restaurant_name: restaurant?.name,
-          restaurant_handle: restaurant?.handle,
-          restaurant_address: restaurant?.address,
-          restaurant_phone: restaurant?.phone,
-          restaurant_email: restaurant?.email
         })
       }
     }
